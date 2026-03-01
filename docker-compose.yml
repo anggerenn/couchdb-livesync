@@ -1,6 +1,6 @@
 services:
   couchdb:
-    image: couchdb:3
+    build: .
     environment:
       - SERVICE_FQDN_COUCHDB
       - COUCHDB_USER=${COUCHDB_USER}
@@ -17,7 +17,6 @@ services:
       start_period: 30s
     volumes:
       - couchdb-data:/opt/couchdb/data
-      - ./local.ini:/opt/couchdb/etc/local.d/local.ini
     restart: unless-stopped
 
 volumes:
