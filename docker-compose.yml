@@ -1,0 +1,26 @@
+services:
+  couchdb:
+    build: .
+    environment:
+      - SERVICE_FQDN_COUCHDB
+      - COUCHDB_USER=${COUCHDB_USER}
+      - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+      - TARGETBUILD=docker-compose
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - '-c'
+        - 'curl -sf -u $${COUCHDB_USER}:$${COUCHDB_PASSWORD} http://localhost:5984/'
+      interval: 15s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - couchdb-data:/opt/couchdb/data
+      - couchdb-config:/opt/couchdb/etc/local.d
+    restart: unless-stopped
+
+volumes:
+  couchdb-data:
+  couchdb-config:
