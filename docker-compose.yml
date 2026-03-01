@@ -2,7 +2,7 @@ services:
   couchdb:
     build: .
     environment:
-      - SERVICE_FQDN_COUCHDB
+      - SERVICE_FQDN_COUCHDB_5984
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
     healthcheck:
