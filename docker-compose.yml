@@ -1,11 +1,10 @@
 services:
   couchdb:
-    build: .
+    image: couchdb:3
     environment:
       - SERVICE_FQDN_COUCHDB
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
-      - TARGETBUILD=docker-compose
     healthcheck:
       test:
         - CMD
@@ -18,9 +17,8 @@ services:
       start_period: 30s
     volumes:
       - couchdb-data:/opt/couchdb/data
-      - couchdb-config:/opt/couchdb/etc/local.d
+      - ./local.ini:/opt/couchdb/etc/local.d/local.ini
     restart: unless-stopped
 
 volumes:
   couchdb-data:
-  couchdb-config:
