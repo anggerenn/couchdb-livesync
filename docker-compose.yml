@@ -5,7 +5,7 @@ services:
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
     ports:
-      - "5984"
+      - "5984:5984"
     healthcheck:
       test:
         - CMD
